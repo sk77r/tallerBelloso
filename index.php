@@ -1,121 +1,149 @@
-<?php require_once "vistas/parte_superior.php"?>
-<?php 
-include ('database.php');
-$clientes = new Database();
-$listado=$clientes->read();
-?>
-
-
 <!doctype html>
-<div class="container">
-    <h1>SISTEMA TALLER BELLOSO</h1>
-</div>
-
-
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
+  <link rel="icon" type="image/png" href="recursos/car.png" />
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.82.0">
+    
+    <title>Login</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
 
-    <!--  Datatables  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>  
+    
 
-    <!--  extension responsive  -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-    <title>Listado de Clientes</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core CSS -->
+<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-    table thead{
-        background-color: #0066ff;        
-    }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
     </style>
-  </head>
-  <body>  
 
-    <h2 class="text-center">LISTADO DE CLIENTES</h2> 
     
-    <div class="container">
-       <div class="row">
-           <div class="col-lg-12">
-            <table id="example" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
-                <thead>
-                    <tr><th>ID</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                 
-                <?php 
-                    while ($row=mysqli_fetch_object($listado)){
-                    $id=$row->id;
-                    $nombre=$row->nombre;
-                    $telefono=$row->telefono;
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+     <div class="col-md-3" style="position: fixed;top: 0;z-index:9999">
+        <div> 
+            <table class="table table-striped">
+  <thead>
+    <tr>
+      <th >Manual</th>
+      <th>Base SQL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><a href="recursos/manuaBelloso.pdf" download="manuaBelloso.pdf">
+Descargar Archivo
+</a></th>
+      <th><a href="recursos/taller.sql" download="taller.sql">
+Descargar Archivo</td>
+      
+    </tr>
+  
+   
+  </tbody>
+</table>
+        </div>  
+    </div>
+  </head>
+  <body class="text-center">
+
+<main class="form-signin">
+<p class="fs-1">TALLER BELLOSO</p> <a class="enlace" href="taller/consultaC.php">¿Eres cliente? Da clic aqui</a>
+  <form  method="post">
+    <img class="mb-4" src="assets/brand/car.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Por favor, registrese</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="txt_usuario" name="txt_usuario" placeholder="name@example.com">
+      <label for="floatingInput">Usuario</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="txt_contrasena" name="txt_contrasena" placeholder="Password">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+      <p class="fs-6">Seleccione su rol</p>
+      <select name="miselector" id="miselector" class="form-select" aria-label="Default select example">
+      <option selected>Secretaria</option>
+      <option value="1">Mecanico</option>
+      <option value="2">Asesor</option>
+      <option value="2">Gerente</option>
+      <option value="2">Jefe</option>
+    </select>
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Recuerdame
+      </label>
+    </div>
+      
 
 
-                ?>
-                    <tr>
-                    <td><?php echo $id;?></td>
-                    <td><?php echo $nombre;?></td>
-                    <td><?php echo $telefono;?></td>
 
-                    <td>
-        <a href="updatecliente.php?id=<?php echo $id;?>" class="edit" title="Editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-        <a href="vehiculos.php?$id=<?php echo urlencode($id);?>"><i class="material-icons">note_add</i></a>
-        <a href="consultacliente.php?id=<?php echo $id;?>" class="info" title="Informacion" data-toggle="tooltip"><i class="large material-icons">assignment_ind</i></a>
-                <a href="report.php?$id=<?php echo $id;?>"name="Imprimir" class="Imprimir" title="Imprimir" data-toggle="tooltip"><i class="material-icons local_printshop">&#xe555;</i></a></td>      
-               
-                    </tr>   
-                <?php
+
+    <button class="btn btn-success" name="botonEntrar" type="submit"  id="botonEntrar">Entrar</button>
+    <br>
+  </form>
+  
+<br>
+  <p class="mt-5 mb-3 text-muted">&copy; Analisis de sistemas - grupo 2</p>
+     </main>
+
+     
+
+
+    
+  </body>
+   
+
+
+
+<?php
+
+include "db/config.php";
+
+if(isset($_POST['botonEntrar'])){
+
+  $uname = mysqli_real_escape_string($con,$_POST['txt_usuario']);
+  $password = mysqli_real_escape_string($con,$_POST['txt_contrasena']);
+
+
+  if ($uname != "" && $password != ""){
+
+      $sql_query = "select count(*) as cntUser from rol where usuarioEmpleado='".$uname."' and contrasenaEmpleado='".$password."'";
+      $result = mysqli_query($con,$sql_query);
+      $row = mysqli_fetch_array($result);
+      $count = $row['cntUser'];
+      
+      if($count > 0){
+        session_start();
+         
+        
+        $_SESSION['usuario'] = $_REQUEST['txt_usuario'];
+        header('Location: taller/');
+      }else{
+        echo "Invalid username and password";
+      }
+
+  }
+
 }
 ?>
 
-                <tbody>
-            </table>  
-         
-           </div>
-       </div> 
-    </div>
-   
-    
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-            
-    <!--   Datatables-->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>  
-      
-    <!-- extension responsive -->
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    
-
-      
-    <script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            responsive: true
-        });
-    } );  
-    
-    </script>
-      
-      
-  </body>
 </html>
-
-<?php require_once "vistas/parte_inferior.php"?>
